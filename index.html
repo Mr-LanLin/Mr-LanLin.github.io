@@ -1,124 +1,105 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="gb2312">
-<title>ÑîÇà¸öÈË²©¿Í - Ò»¸öÕ¾ÔÚwebÇ°¶ËÉè¼ÆÖ®Â·µÄÅ®¼¼ÊõÔ±¸öÈË²©¿ÍÍøÕ¾</title>
-<meta name="keywords" content="¸öÈË²©¿Í,ÑîÇà¸öÈË²©¿Í,¸öÈË²©¿ÍÄ£°å,ÑîÇà" />
-<meta name="description" content="ÑîÇà¸öÈË²©¿Í£¬ÊÇÒ»¸öÕ¾ÔÚwebÇ°¶ËÉè¼ÆÖ®Â·µÄÅ®³ÌÐòÔ±¸öÈËÍøÕ¾£¬Ìá¹©¸öÈË²©¿ÍÄ£°åÃâ·Ñ×ÊÔ´ÏÂÔØµÄ¸öÈËÔ­´´ÍøÕ¾¡£" />
-<link href="css/base.css" rel="stylesheet">
-<link href="css/index.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="js/modernizr.js"></script>
-<![endif]-->
-<script src="js/scrollReveal.js"></script>
+    <meta charset="UTF-8">
+    <title>Mr.Lanä¸ªäººåšå®¢ - ä¸€ä¸ªå¥”è·‘åœ¨è·¯ä¸Šçš„ç¨‹åºå‘˜</title>
+    <meta name="keywords" content="Mr.Lanä¸ªäººåšå®¢,ä¸ªäººåšå®¢,Mr.Lan,ç¨‹åºå‘˜"/>
+    <meta name="description" content="ä¸€ä¸ªå¥”è·‘åœ¨è·¯ä¸Šçš„ç¨‹åºå‘˜"/>
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/modernizr.js"></script>
+    <![endif]-->
+    <script src="js/scrollReveal.js"></script>
+
 </head>
 <body>
+<canvas id=c></canvas>
+<script src="js/index.js" defer="defer"></script>
 <header>
-  <div class="logo" data-scroll-reveal="enter right over 1s"><a href="/"><img src="images/logo.png"></a></div>
-  <nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s"><a href="index.html"><span>Ê×Ò³</span><span class="en">Home</span></a><a href="about.html"><span>¹ØÓÚÎÒ</span><span class="en">About</span></a><a href="manshenghuo.html"><span>ÂýÉú»î</span><span class="en">Life</span></a><a href="learn.html"><span>ËéÑÔËéÓï</span><span class="en">Doing</span></a><a href="mbfx.html"><span>Ä£°å·ÖÏí</span><span class="en">Share</span></a><a href="learn.html"><span>Ñ§ÎÞÖ¹¾³</span><span class="en">Learn</span></a><a href="gbook.html"><span>ÁôÑÔ</span><span class="en">Saying</span></a></nav>
+    <div class="logo" data-scroll-reveal="enter right over 1s">
+        <h1>æ¢¦ä¹‹å…°</h1><br/>
+        <h3>æ²¡æœ‰äººèƒ½é˜»æ­¢ä½ æˆåŠŸï¼Œé™¤äº†ä½ è‡ªå·±...</h3>
+    </div>
+    <!--<nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s">-->
+    <nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s">
+    <a id="home" href="index.html"><span style="color:lightskyblue;">é¦–é¡µ</span><span
+            class="en">Home</span></a>
+    <a id="learn" href="learn.html"><span>å­¦æ— æ­¢å¢ƒ</span><span class="en">Learn</span></a>
+    <a id="life" href="manshenghuo.html"><span>ä½“éªŒç”Ÿæ´»</span><span class="en">Life</span></a>
+    <a id="about" href="about.html"><span>å…³äºŽæˆ‘</span><span class="en">About</span></a>
+</nav>
 </header>
 <article>
-  <div class="container">
-    <div class="blog" data-scroll-reveal="enter top" >
-      <figure>
-        <ul>
-          <a href="/"><img src="images/t01.jpg"><span>ÏÂÔØ¸öÈË²©¿ÍÄ£°å</span></a>
+    <div class="container">
+        <div class="blog" data-scroll-reveal="enter top">
+            <figure>
+                <ul>
+                    <a href="#"><img src="images/code.jpg"><span>æŸ¥çœ‹è¯¦æƒ…</span></a>
+                </ul>
+                <p><a href="#">æ·±å…¥ç†è§£Java</a></p>
+                <figcaption>
+                    Javaæ˜¯ä¸€é—¨é¢å‘å¯¹è±¡ç¼–ç¨‹è¯­è¨€ï¼Œä¸ä»…å¸æ”¶äº†C++è¯­è¨€çš„å„ç§ä¼˜ç‚¹ï¼Œè¿˜æ‘’å¼ƒäº†C++é‡Œéš¾ä»¥ç†è§£çš„å¤šç»§æ‰¿ã€æŒ‡é’ˆç­‰æ¦‚å¿µï¼Œå› æ­¤Javaè¯­è¨€å…·æœ‰åŠŸèƒ½å¼ºå¤§å’Œç®€å•æ˜“ç”¨ä¸¤ä¸ªç‰¹å¾ã€‚Javaè¯­è¨€ä½œä¸ºé™æ€é¢å‘å¯¹è±¡ç¼–ç¨‹è¯­è¨€çš„ä»£è¡¨ï¼Œæžå¥½åœ°å®žçŽ°äº†é¢å‘å¯¹è±¡ç†è®º...
+                </figcaption>
+            </figure>
+            <figure>
+                <ul>
+                    <a href="#"><img src="images/db1.jpg"><span>æŸ¥çœ‹è¯¦æƒ…</span></a>
+                </ul>
+                <p><a href="#">æ•°æ®åº“åŽŸç†</a></p>
+                <figcaption>
+                    æ•°æ®åº“(Database)æ˜¯æŒ‰ç…§æ•°æ®ç»“æž„æ¥ç»„ç»‡ã€å­˜å‚¨å’Œç®¡ç†æ•°æ®çš„ä»“åº“ï¼Œå®ƒäº§ç”ŸäºŽè·ä»Šå…­åå¤šå¹´å‰ï¼Œéšç€ä¿¡æ¯æŠ€æœ¯å’Œå¸‚åœºçš„å‘å±•ï¼Œç‰¹åˆ«æ˜¯äºŒåä¸–çºªä¹åå¹´ä»£ä»¥åŽï¼Œæ•°æ®ç®¡ç†ä¸å†ä»…ä»…æ˜¯å­˜å‚¨å’Œç®¡ç†æ•°æ®ï¼Œè€Œè½¬å˜æˆç”¨æˆ·æ‰€éœ€è¦çš„å„ç§æ•°æ®ç®¡ç†çš„æ–¹å¼...
+                </figcaption>
+            </figure>
+            <figure>
+                <ul>
+                    <a href="#"><img src="images/web.jpg"><span>æŸ¥çœ‹è¯¦æƒ…</span></a>
+                </ul>
+                <p><a href="#">Webå‰ç«¯çŸ¥è¯†</a></p>
+                <figcaption>
+                    å‰ç«¯å¯¹äºŽç½‘ç«™æ¥è¯´ï¼Œé€šå¸¸æ˜¯æŒ‡ï¼Œç½‘ç«™çš„å‰å°éƒ¨åˆ†åŒ…æ‹¬ç½‘ç«™çš„è¡¨çŽ°å±‚å’Œç»“æž„å±‚ã€‚å› æ­¤å‰ç«¯æŠ€æœ¯ä¸€èˆ¬åˆ†ä¸ºå‰ç«¯è®¾è®¡å’Œå‰ç«¯å¼€å‘ï¼Œå‰ç«¯è®¾è®¡ä¸€èˆ¬å¯ä»¥ç†è§£ä¸ºç½‘ç«™çš„è§†è§‰è®¾è®¡ï¼Œå‰ç«¯å¼€å‘åˆ™æ˜¯ç½‘ç«™çš„å‰å°ä»£ç å®žçŽ°ï¼ŒåŒ…æ‹¬åŸºæœ¬çš„HTMLå’ŒCSSä»¥åŠJavaScript...
+                </figcaption>
+            </figure>
+        </div>
+        <ul class="cbp_tmtimeline">
+            <li>
+                <time class="cbp_tmtime"><span>08-08</span> <span>2017</span>
+                </time>
+                <div class="cbp_tmicon"></div>
+                <div class="cbp_tmlabel"
+                     data-scroll-reveal="enter right over 1s">
+                    <h2>ä¸‰æ­¥å®žçŽ°æ»šåŠ¨æ¡è§¦åŠ¨cssåŠ¨ç”»æ•ˆæžœ</h2>
+                    <p><span class="blogpic"><a href="/"><img
+                            src="images/t03.jpg"></a></span>çŽ°åœ¨å¾ˆå¤šç½‘ç«™éƒ½æœ‰è¿™ç§æ•ˆæžœï¼Œæˆ‘å°±æ•´ç†äº†ä¸€ä¸‹ï¼Œåˆ†äº«å‡ºæ¥ã€‚åˆ©ç”¨æ»šåŠ¨æ¡æ¥å®žçŽ°åŠ¨ç”»æ•ˆæžœï¼ŒScrollReveal.js
+                        ç”¨äºŽåˆ›å»ºå’Œç®¡ç†å…ƒç´ è¿›å…¥å¯è§†åŒºåŸŸæ—¶çš„åŠ¨ç”»æ•ˆæžœï¼Œå¸®åŠ©ä½ çš„ç½‘ç«™å¢žåŠ å¸å¼•åŠ›...</p>
+                    <a href="/" target="_blank"
+                       class="readmore">é˜…è¯»å…¨æ–‡&gt;&gt;</a>
+                </div>
+            </li>
         </ul>
-        <p><a href="/">µÆ¾ß¹«Ë¾¸´¹Å·ç¸ñPSDÉè¼Æ¸å</a></p>
-        <figcaption>´ËÄ£°åÎªPSDÉè¼Æ¸å£¬¸´¹Å·ç¸ñ¡£Ê×Ò³Ö÷ÒªÍ»³ö²úÆ·£¬ÒÔ¼°¹«Ë¾¼ò½é¡£ÊÖ»æµÆ×÷ÎªÍ·²¿±³¾°Í¼Æ¬£¬Õâ¸ö±È½ÏÌØ±ð¡£html¿ÉÒÔ×ö³öµÆÒ»ÉÁÒ»ÉÁµÄÐ§¹û£¬»òÕßËµÅÔ±ßÓÐ¸ö°´Å¥...</figcaption>
-      </figure>
-      <figure>
-        <ul>
-          <a href="/"><img src="images/t02.jpg"><span>ÏÂÔØ¸öÈË²©¿ÍÄ£°å</span></a>
-        </ul>
-        <p><a href="/">¸öÈË²©¿ÍÄ£°å¹ÅµäÏµÁÐÖ®¡ª¡ª½­ÄÏÄ«..</a></p>
-        <figcaption>Ò»¹²ÊÇËÄ¸öÒ³Ãæ£¬Ê×Ò³£¬Í¼ÎÄÁÐ±í£¬Í¼Æ¬ÁÐ±í£¬ÎÄ×ÖÄÚÈÝ¡£´ËÄ£°å·ç¸ñÎªÖÐ¹ú¹Åµä·ç¸ñ£¬É½Ë®»­Ä«¼£³É¾ÍÒ»·ù½­ÄÏÄ«¾í¡£Ò³ÃæÊ×Ò³Éè¼Æ½ÏÎª¼òµ¥£¬Í»³öÎÄÕÂÖØµã¡£Í¼ÎÄÁÐ±íÏÔÊ¾...</figcaption>
-      </figure>
-      <figure>
-        <ul>
-          <a href="/"><img src="images/t03.jpg"><span>ÏÂÔØ¸öÈË²©¿ÍÄ£°å</span></a>
-        </ul>
-        <p><a href="/">ÃÀÀöµÄ¼ë</a></p>
-        <figcaption>ÈÃÊÀ½çÓµÓÐËüµÄ½Å²½£¬ÈÃÎÒ±£ÓÐÎÒµÄ¼ë¡£µ±À£ÀÃÒÑ¼«µÄÐÄÁéÔÙ²»Ïë×öÒ»Ë¿Ò»ºÁµÄË¼Ë÷Ê±£¬¾ÍÈÃÎÒ¾²¾²»Øµ½ÎÒµÄ¼ëÄÚ£¬ÒÔ»ØÒäÎªË¯é½£¬ÒÔ±¯°§Îª¸²±»£¬ÕâÊÇÎÒÎ¨Ò»µÄÃÀÀö¡£</figcaption>
-      </figure>
     </div>
-   <ul class="cbp_tmtimeline">
-					<li>
-						<time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-							<h2>Èý²½ÊµÏÖ¹ö¶¯Ìõ´¥¶¯css¶¯»­Ð§¹û</h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>ÏÖÔÚºÜ¶àÍøÕ¾¶¼ÓÐÕâÖÖÐ§¹û£¬ÎÒ¾ÍÕûÀíÁËÒ»ÏÂ£¬·ÖÏí³öÀ´¡£ÀûÓÃ¹ö¶¯ÌõÀ´ÊµÏÖ¶¯»­Ð§¹û£¬ScrollReveal.js ÓÃÓÚ´´½¨ºÍ¹ÜÀíÔªËØ½øÈë¿ÉÊÓÇøÓòÊ±µÄ¶¯»­Ð§¹û£¬°ïÖúÄãµÄÍøÕ¾Ôö¼ÓÎüÒýÁ¦...</p>
-                             <a href="/" target="_blank" class="readmore">ÔÄ¶ÁÈ«ÎÄ&gt;&gt;</a>
-						</div>
-					</li>
-						<li>
-						<time class="cbp_tmtime" ><span>08-08</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel"data-scroll-reveal="enter right over 1s" >
-							<h2>Èý²½ÊµÏÖ¹ö¶¯Ìõ´¥¶¯css¶¯»­Ð§¹û</h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t02.jpg"></a></span>ÏÖÔÚºÜ¶àÍøÕ¾¶¼ÓÐÕâÖÖÐ§¹û£¬ÎÒ¾ÍÕûÀíÁËÒ»ÏÂ£¬·ÖÏí³öÀ´¡£ÀûÓÃ¹ö¶¯ÌõÀ´ÊµÏÖ¶¯»­Ð§¹û£¬ScrollReveal.js ÓÃÓÚ´´½¨ºÍ¹ÜÀíÔªËØ½øÈë¿ÉÊÓÇøÓòÊ±µÄ¶¯»­Ð§¹û£¬°ïÖúÄãµÄÍøÕ¾Ôö¼ÓÎüÒýÁ¦...</p>
-                             <a href="/" target="_blank" class="readmore">ÔÄ¶ÁÈ«ÎÄ&gt;&gt;</a>
-						</div>
-					</li>
-                    <li>
-						<time class="cbp_tmtime" ><span>08-08</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-							<h2>Èý²½ÊµÏÖ¹ö¶¯Ìõ´¥¶¯css¶¯»­Ð§¹û</h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t01.jpg"></a></span>ÏÖÔÚºÜ¶àÍøÕ¾¶¼ÓÐÕâÖÖÐ§¹û£¬ÎÒ¾ÍÕûÀíÁËÒ»ÏÂ£¬·ÖÏí³öÀ´¡£ÀûÓÃ¹ö¶¯ÌõÀ´ÊµÏÖ¶¯»­Ð§¹û£¬ScrollReveal.js ÓÃÓÚ´´½¨ºÍ¹ÜÀíÔªËØ½øÈë¿ÉÊÓÇøÓòÊ±µÄ¶¯»­Ð§¹û£¬°ïÖúÄãµÄÍøÕ¾Ôö¼ÓÎüÒýÁ¦...</p>
-                             <a href="/" target="_blank" class="readmore">ÔÄ¶ÁÈ«ÎÄ&gt;&gt;</a>
-						</div>
-					</li>
-                    <li>
-						<time class="cbp_tmtime" ><span>08-08</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-							<h2>Èý²½ÊµÏÖ¹ö¶¯Ìõ´¥¶¯css¶¯»­Ð§¹û</h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>ÏÖÔÚºÜ¶àÍøÕ¾¶¼ÓÐÕâÖÖÐ§¹û£¬ÎÒ¾ÍÕûÀíÁËÒ»ÏÂ£¬·ÖÏí³öÀ´¡£ÀûÓÃ¹ö¶¯ÌõÀ´ÊµÏÖ¶¯»­Ð§¹û£¬ScrollReveal.js ÓÃÓÚ´´½¨ºÍ¹ÜÀíÔªËØ½øÈë¿ÉÊÓÇøÓòÊ±µÄ¶¯»­Ð§¹û£¬°ïÖúÄãµÄÍøÕ¾Ôö¼ÓÎüÒýÁ¦...</p>
-                             <a href="/" target="_blank" class="readmore">ÔÄ¶ÁÈ«ÎÄ&gt;&gt;</a>
-						</div>
-					</li>
-                    <li>
-						<time class="cbp_tmtime" ><span>08-08</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-							<h2>Èý²½ÊµÏÖ¹ö¶¯Ìõ´¥¶¯css¶¯»­Ð§¹û</h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t02.jpg"></a></span>ÏÖÔÚºÜ¶àÍøÕ¾¶¼ÓÐÕâÖÖÐ§¹û£¬ÎÒ¾ÍÕûÀíÁËÒ»ÏÂ£¬·ÖÏí³öÀ´¡£ÀûÓÃ¹ö¶¯ÌõÀ´ÊµÏÖ¶¯»­Ð§¹û£¬ScrollReveal.js ÓÃÓÚ´´½¨ºÍ¹ÜÀíÔªËØ½øÈë¿ÉÊÓÇøÓòÊ±µÄ¶¯»­Ð§¹û£¬°ïÖúÄãµÄÍøÕ¾Ôö¼ÓÎüÒýÁ¦...</p>
-                             <a href="/" target="_blank" class="readmore">ÔÄ¶ÁÈ«ÎÄ&gt;&gt;</a>
-						</div>
-					</li>
-                    <li>
-						<time class="cbp_tmtime" ><span>08-08</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-							<h2>Èý²½ÊµÏÖ¹ö¶¯Ìõ´¥¶¯css¶¯»­Ð§¹û</h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t01.jpg"></a></span>ÏÖÔÚºÜ¶àÍøÕ¾¶¼ÓÐÕâÖÖÐ§¹û£¬ÎÒ¾ÍÕûÀíÁËÒ»ÏÂ£¬·ÖÏí³öÀ´¡£ÀûÓÃ¹ö¶¯ÌõÀ´ÊµÏÖ¶¯»­Ð§¹û£¬ScrollReveal.js ÓÃÓÚ´´½¨ºÍ¹ÜÀíÔªËØ½øÈë¿ÉÊÓÇøÓòÊ±µÄ¶¯»­Ð§¹û£¬°ïÖúÄãµÄÍøÕ¾Ôö¼ÓÎüÒýÁ¦...</p>
-                             <a href="/" target="_blank" class="readmore">ÔÄ¶ÁÈ«ÎÄ&gt;&gt;</a>
-						</div>
-					</li>
-                    <li>
-						<time class="cbp_tmtime" ><span>08-08</span> <span>2017</span></time>
-						<div class="cbp_tmicon"></div>
-						<div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
-							<h2>Èý²½ÊµÏÖ¹ö¶¯Ìõ´¥¶¯css¶¯»­Ð§¹û</h2>
-							 <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>ÏÖÔÚºÜ¶àÍøÕ¾¶¼ÓÐÕâÖÖÐ§¹û£¬ÎÒ¾ÍÕûÀíÁËÒ»ÏÂ£¬·ÖÏí³öÀ´¡£ÀûÓÃ¹ö¶¯ÌõÀ´ÊµÏÖ¶¯»­Ð§¹û£¬ScrollReveal.js ÓÃÓÚ´´½¨ºÍ¹ÜÀíÔªËØ½øÈë¿ÉÊÓÇøÓòÊ±µÄ¶¯»­Ð§¹û£¬°ïÖúÄãµÄÍøÕ¾Ôö¼ÓÎüÒýÁ¦...</p>
-                             <a href="/" target="_blank" class="readmore">ÔÄ¶ÁÈ«ÎÄ&gt;&gt;</a>
-						</div>
-					</li>
-					
-				</ul>
-  </div>
 </article>
+
+    <div class="dh_right">
+        <div class="dh_fnt">
+            <div class="hv on" onclick="document.getElementById('home').click()">Â· é¦–é¡µ</div>
+            <div class="hv" onclick="document.getElementById('learn').click()">Â· å­¦æ— æ­¢å¢ƒ</div>
+            <div class="hv" onclick="document.getElementById('life').click()">Â· ä½“éªŒç”Ÿæ´»</div>
+            <div class="hv" onclick="document.getElementById('about').click()">Â· å…³äºŽæˆ‘</div>
+            <div class="hv" onclick="window.scrollTo(0,0);">Â· å›žåˆ°é¡¶éƒ¨</div>
+        </div>
+    </div>
+
 <footer>
-Design by DanceSmile <a href="/">ÊñICP±¸11002373ºÅ-1</a>
+    Where there's a will, there's a way.
 </footer>
 <script>
-	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
-		(function(){
-			window.scrollReveal = new scrollReveal({reset: true});
-		})();
-	};
-</script> 
+    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+        (function () {
+            window.scrollReveal = new scrollReveal({reset: true});
+        })();
+    }
+    ;
+</script>
 </body>
 </html>
