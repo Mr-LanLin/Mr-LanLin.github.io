@@ -201,3 +201,45 @@ footer {
 a {
     text-decoration: none;
 }
+
+
+canvas {
+    position: absolute;
+    z-index: 0;
+    top: 870px;
+    left: 0;
+    -webkit-filter: blur(10px) contrast(10);
+    -moz-filter: blur(10px) contrast(10);
+    filter: blur(10px) contrast(10);
+}
+
+.dh_fnt {
+    font-size: 14px;
+    border-left: solid #4bcfef;
+    height: 142px;
+}
+
+.dh_right {
+    position: fixed;
+    z-index: 200;
+    bottom: 50px;
+    right: 20px;
+}
+
+.hv {
+    cursor: pointer;
+    width: 80px;
+    height: 30px;
+}
+
+.dh_fnt div:hover{
+    color: #4bcfef;
+}
+
+.on {
+    color: #4bcfef;
+}
+
+.topnav a:hover{
+    color: lightskyblue;
+}
