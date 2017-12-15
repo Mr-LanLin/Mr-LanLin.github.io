@@ -3,13 +3,13 @@ try {
     var win_height = document.getElementsByTagName("body")[0].offsetHeight - 890;
     if (win_height <= 0) {
         win_height = 0;
-        document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
+        // document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
     }
     var h = c.height = win_height;
 
     var ctx = c.getContext('2d'), opts = {
         particles: 30,
-        particleBaseSize: 5,
+        particleBaseSize: 8,
         particleAddedSize: 5,
         particleSizeSpeedMultiplier: .2,
         particleBaseRadiant: Math.PI / 2 - .4,
@@ -134,7 +134,7 @@ window.addEventListener('resize', function () {
         var win_height = document.getElementsByTagName("body")[0].offsetHeight - 890;
         if (win_height <= 0) {
             win_height = 0;
-            document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
+            // document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
         }
         h = c.height = win_height;
         // c.parentNode.removeChild(c);

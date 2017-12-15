@@ -1,0 +1,10 @@
+.container {
+    background: url(../images/tm80.png) repeat;
+    overflow: hidden;
+    margin: 20px;
+    box-shadow: #075498 0px 1px 10px;
+}
+
+#display_frame {
+    border: none;
+}
