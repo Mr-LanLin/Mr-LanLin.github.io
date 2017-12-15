@@ -2,7 +2,7 @@ try {
     var w = c.width = window.innerWidth - 30;
     var win_height = document.getElementsByTagName("body")[0].offsetHeight - 890;
     if (win_height <= 0) {
-        win_height = 60;
+        win_height = 0;
         document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
     }
     var h = c.height = win_height;
@@ -133,7 +133,7 @@ window.addEventListener('resize', function () {
         w = c.width = window.innerWidth - 30;
         var win_height = document.getElementsByTagName("body")[0].offsetHeight - 890;
         if (win_height <= 0) {
-            win_height = 60;
+            win_height = 0;
             document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
         }
         h = c.height = win_height;
