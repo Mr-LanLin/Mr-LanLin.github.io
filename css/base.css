@@ -206,7 +206,7 @@ a {
 canvas {
     position: absolute;
     z-index: 0;
-    top: 870px;
+    top: 860px;
     left: 0;
     -webkit-filter: blur(10px) contrast(10);
     -moz-filter: blur(10px) contrast(10);
@@ -223,7 +223,7 @@ canvas {
     position: fixed;
     z-index: 200;
     bottom: 50px;
-    right: 10px;
+    right: 20px;
 }
 
 .hv {

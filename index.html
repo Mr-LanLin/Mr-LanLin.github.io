@@ -1,38 +1,20 @@
 ---
+title: My Blog
 ---
 <!doctype html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>Mr.Lan个人博客 - 一个奔跑在路上的程序员</title>
-		<meta name="keywords" content="Mr.Lan个人博客,个人博客,Mr.Lan,程序员"/>
-		<meta name="description" content="一个奔跑在路上的程序员"/>
-		<link href="css/base.css" rel="stylesheet">
+		{% include head.html %}
 		<link href="css/index.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-		<script src="js/modernizr.js"></script>
-		<![endif]-->
-		<script src="js/scrollReveal.js"></script>
 	</head>
 	<body>
-		<canvas id='c'></canvas>
-		<script src="js/index.js" defer="defer"></script>
-		<header>
-			<div class="logo" data-scroll-reveal="enter right over 1s">
-				<h1>梦之兰</h1>
-				<br/>
-				<h3>没有人能阻止你成功，除了你自己...</h3>
-			</div>
-			<!--<nav class="topnav" data-scroll-reveal="enter bottom over 1s after 0.5s">-->
-			<nav class="topnav" data-scroll-reveal="enter bottom over 1s after 0.5s">
-				<a id="home" href="index.html"><span style="color:lightskyblue;">首页</span><span
-				class="en">Home</span></a>
-				<a id="learn" href="learn.html"><span>学无止境</span><span class="en">Learn</span></a>
-				<a id="life" href="manshenghuo.html"><span>体验生活</span><span class="en">Life</span></a>
-				<a id="about" href="about.html"><span>关于我</span><span class="en">About</span></a>
-			</nav>
-		</header>
-		<article>
+		{% include header.html %}
+		
+		{% for post in paginator.posts %}
+    <a href="{{ post.url }}">{{ post.title }}</a>
+{% endfor %}
+		
+		<!-- <article>
 			<div class="container">
 				<div class="blog" data-scroll-reveal="enter top">
 					<figure>
@@ -90,31 +72,11 @@
 					{% endfor %}
 				</ul>
 			</div>
-		</article>
-		<div class="dh_right">
-			<div class="dh_fnt">
-				<div class="hv on" onclick="document.getElementById('home').click()">
-					· 首页
-				</div>
-				<div class="hv" onclick="document.getElementById('learn').click()">
-					· 学无止境
-				</div>
-				<div class="hv" onclick="document.getElementById('life').click()">
-					· 体验生活
-				</div>
-				<div class="hv" onclick="document.getElementById('about').click()">
-					· 关于我
-				</div>
-				<div class="hv" onclick="window.scrollTo(0,0);">
-					· 回到顶部
-				</div>
-			</div>
-		</div>
-
-		<footer>
-			Where there's a will, there's a way.
-		</footer>
+		</article> -->
+		{% include footer.html %}
 		<script>
+			document.getElementById("sy").className += " on";
+			document.getElementById("home").firstChild.className = "on";
 			if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
 				(function() {
 					window.scrollReveal = new scrollReveal({

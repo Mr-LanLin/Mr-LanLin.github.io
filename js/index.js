@@ -1,6 +1,6 @@
 try {
     var w = c.width = window.innerWidth - 30;
-    var win_height = document.getElementsByTagName("body")[0].offsetHeight - 890;
+    var win_height = document.getElementsByTagName("body")[0].offsetHeight - 860;
     if (win_height <= 0) {
         win_height = 0;
         // document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
@@ -131,7 +131,7 @@ anim();
 window.addEventListener('resize', function () {
     try {
         w = c.width = window.innerWidth - 30;
-        var win_height = document.getElementsByTagName("body")[0].offsetHeight - 890;
+        var win_height = document.getElementsByTagName("body")[0].offsetHeight - 860;
         if (win_height <= 0) {
             win_height = 0;
             // document.getElementsByClassName("container")[0].style.height = window.innerHeight - 300 + "px";
