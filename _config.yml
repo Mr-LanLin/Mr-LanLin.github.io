@@ -1,2 +1,2 @@
-paginate: 1
+paginate: 5
 paginate_path: "page:num"
