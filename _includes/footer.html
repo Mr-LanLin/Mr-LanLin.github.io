@@ -1,5 +1,5 @@
 <div class="dh_right">
-	<div class="dh_fnt">
+	<div id="back-to-top" hidden="hidden" class="dh_fnt">
 		<div id="sy" class="hv" onclick="document.getElementById('home').click()">
 			· 首页
 		</div>
@@ -12,7 +12,7 @@
 		<div id="gy" class="hv" onclick="document.getElementById('about').click()">
 			· 关于我
 		</div>
-		<div class="hv" onclick="window.scrollTo(0,0);">
+		<div id="back" class="hv">
 			· 回到顶部
 		</div>
 	</div>
@@ -24,3 +24,32 @@
 	</div>
 </footer>
 <script src="js/index.js" defer="defer"></script>
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//首先将#back-to-top隐藏
+		// $("#back-to-top").hide();
+		if ($(window).scrollTop() > 180) {
+			$("#back-to-top").fadeIn(1000);
+		} else {
+			$("#back-to-top").fadeOut(1000);
+		}
+		//当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+		$(function() {
+			$(window).scroll(function() {
+				if ($(window).scrollTop() > 180) {
+					$("#back-to-top").fadeIn(1000);
+				} else {
+					$("#back-to-top").fadeOut(1000);
+				}
+			});
+			//当点击跳转链接后，回到页面顶部位置
+			$("#back").click(function() {
+				$('body,html').animate({
+					scrollTop : 0
+				}, 1000);
+				return false;
+			});
+		});
+	}); 
+</script>
