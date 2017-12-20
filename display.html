@@ -42,8 +42,12 @@
 </footer>
 <script src="js/index.js" type="text/javascript" defer="defer" charset="UTF-8"></script>
 <script type="text/javascript" charset="UTF-8" src="../js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" charset="UTF-8">
-    $(document).ready(function() {
+<script type="text/javascript" charset="UTF-8" defer="defer">
+    window.onload = function() {
+        var displayframe = document.getElementById('display_frame');
+        displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 40 + "px";
+        w = c.width = window.innerWidth - 30;
+        h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
         var displayframe = document.getElementById('display_frame');
         displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 50 + "px";
 //        w = c.width = window.innerWidth - 30;
@@ -72,7 +76,7 @@
                 return false;
             });
         });
-    });
+    }
     if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
         (function() {
             window.scrollReveal = new scrollReveal({
