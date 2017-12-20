@@ -45,13 +45,9 @@
 <script type="text/javascript" charset="UTF-8" defer="defer">
     window.onload = function() {
         var displayframe = document.getElementById('display_frame');
-        displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 40 + "px";
+        displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 50 + "px";
         w = c.width = window.innerWidth - 30;
         h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
-        var displayframe = document.getElementById('display_frame');
-        displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 50 + "px";
-//        w = c.width = window.innerWidth - 30;
-//        h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
         //首先将#back-to-top隐藏
         // $("#back-to-top").hide();
         if ($(window).scrollTop() > 180) {
