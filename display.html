@@ -2,35 +2,84 @@
 ---
 <!doctype html>
 <html>
-	<head>
-		{% include head.html %}
-		<link href="css/m.css" rel="stylesheet">
-		<link href="css/display.css" rel="stylesheet">
-	</head>
-	<body>
-		{% include header.html %}
-		<article>
-			<div class="container">
-				<iframe id="display_frame" width="100%" height="100%"></iframe>
-			</div>
-			<script src="js/display.js"></script>
-		</article>
-		{% include footer.html %}
-		<script>
-			if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
-				(function() {
-					window.scrollReveal = new scrollReveal({
-						reset : true
-					});
-				})();
-			}
+<head>
+    {% include head.html %}
+    <link href="css/m.css" rel="stylesheet">
+    <link href="css/display.css" rel="stylesheet">
+</head>
+<body>
+{% include header.html %}
+<article>
+    <div class="container">
+        <iframe id="display_frame" width="100%" height="100%"></iframe>
+    </div>
+</article>
+<script type="text/javascript" src="js/display.js" charset="UTF-8"></script>
+<div class="dh_right">
+    <div id="back-to-top" hidden="hidden" class="dh_fnt">
+        <div id="sy" class="hv" onclick="document.getElementById('home').click()">
+            · 首页
+        </div>
+        <div id="xx" class="hv" onclick="document.getElementById('learn').click()">
+            · 学无止境
+        </div>
+        <div id="sh" class="hv" onclick="document.getElementById('life').click()">
+            · 体验生活
+        </div>
+        <div id="gy" class="hv" onclick="document.getElementById('about').click()">
+            · 关于我
+        </div>
+        <div id="back" class="hv">
+            · 回到顶部
+        </div>
+    </div>
+</div>
 
-			window.onload = function() {
-				var displayframe = document.getElementById('display_frame');
-				displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 40 + "px";
-				w = c.width = window.innerWidth - 30;
-				h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
-			}
-		</script>
-	</body>
+<footer>
+    <div style="color: 	#787878;position: relative;z-index: 100;">
+        Where there's a will, there's a way.
+    </div>
+</footer>
+<script src="js/index.js" type="text/javascript" defer="defer" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="UTF-8">
+    $(document).ready(function() {
+        var displayframe = document.getElementById('display_frame');
+        displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 50 + "px";
+//        w = c.width = window.innerWidth - 30;
+//        h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
+        //首先将#back-to-top隐藏
+        // $("#back-to-top").hide();
+        if ($(window).scrollTop() > 180) {
+            $("#back-to-top").fadeIn(1000);
+        } else {
+            $("#back-to-top").fadeOut(1000);
+        }
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function() {
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 180) {
+                    $("#back-to-top").fadeIn(1000);
+                } else {
+                    $("#back-to-top").fadeOut(1000);
+                }
+            });
+            //当点击跳转链接后，回到页面顶部位置
+            $("#back").click(function() {
+                $('body,html').animate({
+                    scrollTop : 0
+                }, 1000);
+                return false;
+            });
+        });
+    });
+    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+        (function() {
+            window.scrollReveal = new scrollReveal({
+                reset : true
+            });
+        })();
+    }
+</script>
+</body>
 </html>

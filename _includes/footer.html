@@ -23,9 +23,9 @@
 		Where there's a will, there's a way.
 	</div>
 </footer>
-<script src="js/index.js" defer="defer"></script>
-<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
+<script src="js/index.js" type="text/javascript" defer="defer" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="UTF-8">
 	$(document).ready(function() {
 		//首先将#back-to-top隐藏
 		// $("#back-to-top").hide();
@@ -51,5 +51,12 @@
 				return false;
 			});
 		});
-	}); 
+	});
+    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+        (function() {
+            window.scrollReveal = new scrollReveal({
+                reset : true
+            });
+        })();
+    }
 </script>
