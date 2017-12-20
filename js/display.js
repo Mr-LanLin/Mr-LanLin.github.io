@@ -12,3 +12,6 @@ function newsize() {
     h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
     displayframe.scrolling = "auto";
 }
+function next(url){
+	top.location.reload(url);
+}
