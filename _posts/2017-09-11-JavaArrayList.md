@@ -149,4 +149,4 @@ transient int modCount (extends) | 记录修改次数
 
 <p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaHashMap.html">HashMap实现剖析</a></p>
 
-<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaEnumeration.html">Java 枚举知识整理</a></p>
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/26/JavaEnumeration.html">Java 枚举知识整理</a></p>

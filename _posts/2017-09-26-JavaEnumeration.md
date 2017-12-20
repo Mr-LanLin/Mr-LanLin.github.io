@@ -515,6 +515,6 @@ public enum RoShamBo3 implements Competitor<RoShamBo3> {
 
 {{ page.date|date_to_string }}
 
-<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaArrayList.html">ArrayList实现剖析</a></p>
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/11/JavaArrayList.html">ArrayList实现剖析</a></p>
 
-<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaException.html">Java 异常机制</a></p>
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/10/11/JavaException.html">Java 异常机制</a></p>

@@ -163,6 +163,6 @@ Entry[] table数组的长度，由于数组是内存中连续的存储单元，�
 
 {{ page.date|date_to_string }}
 
-<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaOOP.html">Java 面向对象知识整理</a></p>
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/08/31/JavaOOP.html">Java 面向对象知识整理</a></p>
 
-<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaArrayList.html">ArrayList实现剖析</a></p>
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/11/JavaArrayList.html">ArrayList实现剖析</a></p>
