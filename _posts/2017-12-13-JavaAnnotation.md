@@ -537,6 +537,6 @@ public class Test {
 
 {{ page.date|date_to_string }}
 
-<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaReflection.html'">Java 反射知识整理</a></p>
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaReflection.html">Java 反射知识整理</a></p>
 
 <p>下一篇：没有了</p>
