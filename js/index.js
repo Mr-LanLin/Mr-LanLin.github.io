@@ -8,14 +8,14 @@ try {
     var h = c.height = win_height;
 
     var ctx = c.getContext('2d'), opts = {
-        particles: 30,
-        particleBaseSize: 8,
-        particleAddedSize: 5,
-        particleSizeSpeedMultiplier: .2,
-        particleBaseRadiant: Math.PI / 2 - .4,
-        particleAddedRadiant: .2,
+        particles: h/50,//颗粒数
+        particleBaseSize: 6,//颗粒大小
+        particleAddedSize: 9,//加进来的颗粒大小
+        particleSizeSpeedMultiplier: .2,//速度因子
+        particleBaseRadiant: 0.2,//Math.PI / 2 - .4基本颗粒辐射方向 0横向
+        particleAddedRadiant: 1,//添加克里辐射方向
 
-        trails: 30,
+        trails: 20,// 尾巴数
         trailSizeBaseMultiplier: .6,
         trailSizeAddedMultiplier: .2,
         trailSizeSpeedMultiplier: .1,
