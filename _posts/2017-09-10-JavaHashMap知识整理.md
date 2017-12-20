@@ -1,3 +1,11 @@
+---
+title: HashMap实现剖析
+year: 2017
+month: 09
+day: 10
+desc: HashMap可以说是Java中最常用的集合类框架之一，是Java语言中非常典型的数据结构，我们总会在不经意间用到它，很大程度上方便了我们日常开发。但是，你真的了解它吗...
+---
+
 # HashMap剖析
 
 ### 一、总体介绍
@@ -152,3 +160,5 @@ Entry[] table数组的长度，由于数组是内存中连续的存储单元，�
 3. key无序不可重复可为null、value可重复可为null；
 4. HashMap的查找效率非常高，因为它使用Hash表对进行查找，可直接定位到Key值所在的桶中；
 5. 使用HashMap时，要注意HashMap容量和加载因子的关系，这将直接影响到HashMap的性能问题。加载因子过小，会提高HashMap的查找效率，但同时也消耗了大量的内存空间，加载因子过大，节省了空间，但是会导致HashMap的查找效率降低
+
+{{ page.date|date_to_string }}

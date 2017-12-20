@@ -1,3 +1,11 @@
+---
+title: ArrayList实现剖析
+year: 2017
+month: 09
+day: 11
+desc: ArrayList就是动态数组，用MSDN中的说法，就是Array的复杂版本，它提供了动态的增加和减少元素，实现了ICollection和IList接口，灵活的设置数组的大小等好处。但是，你真的了解它吗...
+---
+
 # ArrayList 剖析
 
 ### 一、总体介绍
@@ -136,3 +144,5 @@ transient int modCount (extends) | 记录修改次数
 - **ArrayList创建时的大小为0 或 10（JDK版本不同，实现不同）**
     - 创建默认大小为0时，加入第一个元素时，第一次扩容时，默认容量大小为10，每次扩容都以**当前数组大小的1.5倍**去扩容
     - 创建默认大小为10时，扩容都以**当前数组大小的1.5倍 + 1** 去扩容
+
+{{ page.date|date_to_string }}
