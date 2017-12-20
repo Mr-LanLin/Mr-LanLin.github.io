@@ -6,20 +6,21 @@
     {% include head.html %}
     <link href="css/m.css" rel="stylesheet">
     <link href="css/display.css" rel="stylesheet">
+    <script type="text/javascript" charset="UTF-8" src="../js/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 {% include header.html %}
 <article>
-    <div class="container">
-        <iframe id="display_frame" style="min-height: 500px" width="100%" height="100%"></iframe>
+    <div id="container" class="container">
     </div>
 </article>
 <script type="text/javascript" charset="UTF-8">
     window.onload = function() {
         var displayframe = document.getElementById('display_frame');
-        displayframe.style.height = displayframe.contentWindow.document.getElementsByTagName("body")[0].offsetHeight + 100 + "px";
-        w = c.width = window.innerWidth - 30;
-        h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
+        var docm = displayframe.contentDocument;
+        displayframe.style.height = docm.getElementsByTagName("body")[0].offsetHeight + 100 + "px";
+//        w = c.width = window.innerWidth - 30;
+//        h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
         //首先将#back-to-top隐藏
         // $("#back-to-top").hide();
         if ($(window).scrollTop() > 180) {
@@ -79,7 +80,6 @@
         Where there's a will, there's a way.
     </div>
 </footer>
-<script src="js/index.js" type="text/javascript" defer="defer" charset="UTF-8"></script>
-<script type="text/javascript" charset="UTF-8" src="../js/jquery-3.2.1.min.js"></script>
+<!--<script src="js/index.js" type="text/javascript" defer="defer" charset="UTF-8"></script>-->
 </body>
 </html>
