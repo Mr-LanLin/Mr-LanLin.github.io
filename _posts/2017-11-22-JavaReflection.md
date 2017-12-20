@@ -1,12 +1,12 @@
 ---
-title: Java 动态特性之反射
+title: Java 反射知识整理
 year: 2017
 month: 11
 day: 22
 desc: JAVA反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为java语言的反射机制...
 ---
 
-# Java动态特性之反射
+# Java反射知识整理
 
 **反射库（reflection library）提供了一个非常丰富且精心设计的工具集，以便能够动态操纵Java代码的程序。这项功能被大量地应用于JavaBeans中。使用反射，Java可以支持Visual Basic用户习惯使用的工具，特别是在设计或运行中添加新类时，能够快速地应用开发工具动态地查询新添加类的能力。能够分析类能力的程序称为反射（reflective）**
 
@@ -216,3 +216,7 @@ static Object arrayGrow(Object a) {
 [2] 深入理解Java 7 核心技术与最佳实践
 
 {{ page.date|date_to_string }}
+
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaNIO.html'">Java NIO知识整理</a></p>
+
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaAnnotation.html'">Java 注解知识整理</a></p>

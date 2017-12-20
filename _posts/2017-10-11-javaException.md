@@ -60,3 +60,8 @@ void printStackTrace | 打印Throwable和Throwable的调用栈轨迹
 Throwable fillInStackTrace() | 用于在Throwable对象的内部记录栈帧的当前状态
 
 {{ page.date|date_to_string }}
+
+
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaEnumeration.html'">Java 枚举知识整理</a></p>
+
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaIO.html'">Java IO知识整理</a></p>

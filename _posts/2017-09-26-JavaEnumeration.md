@@ -514,3 +514,7 @@ public enum RoShamBo3 implements Competitor<RoShamBo3> {
 6. **可以与其他语言功能结合，如多态、泛型和反射**
 
 {{ page.date|date_to_string }}
+
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaArrayList.html'">ArrayList实现剖析</a></p>
+
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaException.html'">Java 异常机制</a></p>

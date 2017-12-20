@@ -162,3 +162,7 @@ Entry[] table数组的长度，由于数组是内存中连续的存储单元，�
 5. 使用HashMap时，要注意HashMap容量和加载因子的关系，这将直接影响到HashMap的性能问题。加载因子过小，会提高HashMap的查找效率，但同时也消耗了大量的内存空间，加载因子过大，节省了空间，但是会导致HashMap的查找效率降低
 
 {{ page.date|date_to_string }}
+
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaOOP.html'">Java 面向对象知识整理</a></p>
+
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/09/10/JavaArrayList.html'">ArrayList实现剖析</a></p>
