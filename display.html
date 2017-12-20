@@ -14,8 +14,12 @@
     <div id="container" class="container">
     </div>
 </article>
+<div>
+<p>上一篇：<a href='{{ last }}'>{{ lastTitle }}</a></p>
+<p>下一篇：<a href='{{ next }}'>{{ nextTitle }}</a></p>
+</div>
 <!--PC和WAP自适应版-->
-<div id="SOHUCS" width="1200px" sid="请将此处替换为配置SourceID的语句" ></div> 
+<div id="SOHUCS" style="width:1200px !important;" sid="{{ sid }}" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = 'cytnhKu7w'; 
@@ -25,60 +29,60 @@ if (width < 960) {
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
 </script>
 <script type="text/javascript" charset="UTF-8">
-    window.onload = function() {
-        //首先将#back-to-top隐藏
-        // $("#back-to-top").hide();
-        if ($(window).scrollTop() > 180) {
-            $("#back-to-top").fadeIn(1000);
-        } else {
-            $("#back-to-top").fadeOut(1000);
-        }
-        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
-        $(function() {
-            $(window).scroll(function() {
-                if ($(window).scrollTop() > 180) {
-                    $("#back-to-top").fadeIn(1000);
-                } else {
-                    $("#back-to-top").fadeOut(1000);
-                }
-            });
-            //当点击跳转链接后，回到页面顶部位置
-            $("#back").click(function() {
-                $('body,html').animate({
-                    scrollTop : 0
-                }, 1000);
-                return false;
-            });
-        });
-    }
-    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
-        (function() {
-            window.scrollReveal = new scrollReveal({
-                reset : true
-            });
-        })();
-    }
+	window.onload = function() {
+		//首先将#back-to-top隐藏
+		// $("#back-to-top").hide();
+		if ($(window).scrollTop() > 180) {
+			$("#back-to-top").fadeIn(1000);
+		} else {
+			$("#back-to-top").fadeOut(1000);
+		}
+		//当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+		$(function() {
+			$(window).scroll(function() {
+				if ($(window).scrollTop() > 180) {
+					$("#back-to-top").fadeIn(1000);
+				} else {
+					$("#back-to-top").fadeOut(1000);
+				}
+			});
+			//当点击跳转链接后，回到页面顶部位置
+			$("#back").click(function() {
+				$('body,html').animate({
+					scrollTop : 0
+				}, 1000);
+				return false;
+			});
+		});
+	}
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+		(function() {
+			window.scrollReveal = new scrollReveal({
+				reset : true
+			});
+		})();
+	}
 </script>
 <script src="js/index.js" type="text/javascript" defer="defer" charset="UTF-8"></script>
 <script type="text/javascript" src="js/display.js" charset="UTF-8"></script>
 <div class="dh_right">
-    <div id="back-to-top" hidden="hidden" class="dh_fnt">
-        <div id="sy" class="hv" onclick="document.getElementById('home').click()">
-            · 首页
-        </div>
-        <div id="xx" class="hv" onclick="document.getElementById('learn').click()">
-            · 学无止境
-        </div>
-        <div id="sh" class="hv" onclick="document.getElementById('life').click()">
-            · 体验生活
-        </div>
-        <div id="gy" class="hv" onclick="document.getElementById('about').click()">
-            · 关于我
-        </div>
-        <div id="back" class="hv">
-            · 回到顶部
-        </div>
-    </div>
+	<div id="back-to-top" hidden="hidden" class="dh_fnt">
+		<div id="sy" class="hv" onclick="document.getElementById('home').click()">
+			· 首页
+		</div>
+		<div id="xx" class="hv" onclick="document.getElementById('learn').click()">
+			· 学无止境
+		</div>
+		<div id="sh" class="hv" onclick="document.getElementById('life').click()">
+			· 体验生活
+		</div>
+		<div id="gy" class="hv" onclick="document.getElementById('about').click()">
+			· 关于我
+		</div>
+		<div id="back" class="hv">
+			· 回到顶部
+		</div>
+	</div>
 </div>
 <footer>
     <div style="color: 	#787878;position: relative;z-index: 100;">
