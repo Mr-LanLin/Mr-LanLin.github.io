@@ -8,7 +8,7 @@ function newsize() {
     var displayframe = document.getElementById('display_frame');
     var docm = displayframe.contentDocument;
     displayframe.style.height = docm.getElementsByTagName("body")[0].offsetHeight + 100 + "px";
-    c.width = window.innerWidth - 30;
-    c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
+    w = c.width = window.innerWidth - 30;
+    h = c.height = document.getElementsByTagName("body")[0].offsetHeight - 920;
     displayframe.scrolling = "auto";
 }
