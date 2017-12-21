@@ -218,6 +218,6 @@ static Object arrayGrow(Object a) {
 
 {{ page.date|date_to_string }}
 
-<p>上一篇：<a href="https://mr-lanlin.github.io/2017/11/09/JavaNIO.html">Java NIO知识整理</a></p>
+<p>上一篇：<a href="https://mr-lanlin.github.io/2017/11/22/Mediator.html">中介者（Mediator）设计模式</a></p>
 
 <p>下一篇：<a href="https://mr-lanlin.github.io/2017/12/13/JavaAnnotation.html">Java 注解知识整理</a></p>
