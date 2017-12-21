@@ -540,4 +540,4 @@ public class Test {
 
 <p>上一篇：<a href="https://mr-lanlin.github.io/2017/11/22/JavaReflection.html">Java 反射知识整理</a></p>
 
-<p>下一篇：没有了</p>
+<p>下一篇：<a href="https://mr-lanlin.github.io/2017/12/21/Java5Features.html">Java 5 新特性整理</a></p>
