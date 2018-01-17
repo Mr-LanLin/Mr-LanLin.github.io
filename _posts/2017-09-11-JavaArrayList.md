@@ -4,6 +4,7 @@ year: 2017
 month: 09
 day: 11
 pic: 3
+type: Java
 desc: ArrayList就是动态数组，用MSDN中的说法，就是Array的复杂版本，它提供了动态的增加和减少元素，实现了ICollection和IList接口，灵活的设置数组的大小等好处。但是，你真的了解它吗...
 ---
 

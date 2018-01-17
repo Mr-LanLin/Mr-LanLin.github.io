@@ -4,6 +4,7 @@ year: 2017
 month: 12
 day: 21
 pic: 10
+type: Java
 desc: Java编程语言发展到5.0版本，出现了很多和之前Java版本相比比较新颖的特性，这可以说是Java史上最重大的更新之一...
 ---
 

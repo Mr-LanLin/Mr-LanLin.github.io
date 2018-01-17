@@ -1,0 +1,21 @@
+---
+---
+{% include list_header.html %}
+<h2 class="ctitle"><b>Java专题笔记</b><span>记录点滴成长</span></h2>
+<div class="blog" data-scroll-reveal="enter top" >
+	{% for post in site.posts %}
+	{% if post.type == 'Java' %}
+	<figure>
+		<ul>
+			<a href="display.html?static{{ site.baseurl }}/source{{ post.url }}"><img src="images/{{ post.pic }}.jpg"><span>查看详情</span></a>
+		</ul>
+		<p>
+			<a href="display.html?static{{ site.baseurl }}/source{{ post.url }}">{{ post.title }}</a>
+		</p>
+		<figcaption>
+			{{ post.desc }}
+		</figcaption>
+	</figure>
+	{% endif %}
+	{% endfor %}
+	{% include list_footer.html %}
