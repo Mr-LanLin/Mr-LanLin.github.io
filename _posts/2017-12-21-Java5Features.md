@@ -112,7 +112,7 @@ System.out.printf("身高体重(%.2f , %d)", 180.2, 65);
 **通用、字符和数字类型的格式化语法如下：**
 
 `%[argument_index$][flags][width][.precision]conversion`
- 
+
 - argument_index 可选，十进制整数，表示参数列表中参数的位置。第一个参数由“ 1$” 引用
 - flags 可选，一组修改输出格式的字符，有效标志的集合取决于conversion
 - width 可选，非负十进制整数，指示要写入输出的最小字符数
@@ -195,7 +195,7 @@ conversion | 参数类别 | 描述
 - 'm'	月，根据需要格式化为带有前导零的两位数字，即01 - 13。
 - 'd'	一个月的日子，根据需要格式化为两位数前导零，即 01 - 31
 - 'e'	一个月的日期，格式为两位数字，即1 - 31。
- 
+
 以下转换字符用于格式化常用日期/时间组合
 
 - 'R'	时间格式为24小时制 "%tH:%tM"
@@ -309,4 +309,4 @@ out.print("Hello World");
 
 <p>上一篇：<a href="https://mr-lanlin.github.io/2017/12/13/JavaAnnotation.html">Java 注解知识整理</a></p>
 
-<p>下一篇：没有了</p>
+<p>下一篇：<a href="https://mr-lanlin.github.io/2020/01/01/设计模式-备忘录模式.html">设计模式-备忘录模式（Memento）</a></p>
