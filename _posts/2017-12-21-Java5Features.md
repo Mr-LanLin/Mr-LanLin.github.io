@@ -309,4 +309,4 @@ out.print("Hello World");
 
 <p>上一篇：<a href="https://mr-lanlin.github.io/2017/12/13/JavaAnnotation.html">Java 注解知识整理</a></p>
 
-<p>下一篇：<a href="https://mr-lanlin.github.io/2020/01/01/设计模式-备忘录模式.html">设计模式-备忘录模式（Memento）</a></p>
+<p>下一篇：<a href="https://mr-lanlin.github.io/2018/01/01/Java6新特性.html">Java6新特性</a></p>
