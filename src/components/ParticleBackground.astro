@@ -1,0 +1,149 @@
+---
+// 粒子背景:Canvas 粒子 + 连线 + 鼠标交互(零依赖)
+// 固定铺满全屏、置于内容下方(z-index:0),通过 window 监听鼠标以保持内容可点击
+---
+
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<style>
+  #particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+
+  // 读取主题色,让粒子与全局配色一致
+  const styles = getComputedStyle(document.documentElement);
+  const ACCENT = styles.getPropertyValue('--color-accent').trim() || '#22d3ee';
+  const ACCENT_2 = styles.getPropertyValue('--color-accent-2').trim() || '#a78bfa';
+
+  let width = 0;
+  let height = 0;
+  let particles = [];
+  let rafId = 0;
+
+  // 鼠标位置(默认画布外,不产生连线)
+  const mouse = { x: -9999, y: -9999 };
+
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * DPR;
+    canvas.height = height * DPR;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+    // 粒子数量随面积缩放,保证密度稳定
+    const count = Math.min(160, Math.floor((width * height) / 12000));
+    particles = Array.from({ length: count }, () => spawn(true));
+  }
+
+  function spawn(randomizeY = false) {
+    return {
+      x: Math.random() * width,
+      y: randomizeY ? Math.random() * height : height + 10,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.6 + 0.6,
+      // 每颗粒子在青/紫之间取一个主色
+      color: Math.random() > 0.5 ? ACCENT : ACCENT_2,
+    };
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const p of particles) {
+      // 移动
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // 边界回弹
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      // 鼠标附近轻微吸附,营造"聚拢"的交互感
+      const dxm = p.x - mouse.x;
+      const dym = p.y - mouse.y;
+      const dm = Math.hypot(dxm, dym);
+      if (dm < 120 && dm > 0.01) {
+        const force = (120 - dm) / 120;
+        p.x += (dxm / dm) * force * 0.8;
+        p.y += (dym / dm) * force * 0.8;
+      }
+
+      // 绘制粒子
+      ctx.globalAlpha = 0.7;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 连线:相邻粒子 + 鼠标周围
+    const LINK_DIST = 110;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i];
+        const b = particles[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < LINK_DIST) {
+          const alpha = (1 - d / LINK_DIST) * 0.18;
+          ctx.globalAlpha = alpha;
+          ctx.strokeStyle = ACCENT;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+
+      // 粒子与鼠标连线
+      const p = particles[i];
+      const dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+      if (dm < 160) {
+        const alpha = (1 - dm / 160) * 0.4;
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = ACCENT_2;
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+      }
+    }
+
+    ctx.globalAlpha = 1;
+    rafId = requestAnimationFrame(step);
+  }
+
+  function onMouseMove(e) {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  }
+
+  function onMouseLeave() {
+    mouse.x = -9999;
+    mouse.y = -9999;
+  }
+
+  // 尊重"减少动效"偏好:直接不启动动画
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    resize();
+    step();
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseleave', onMouseLeave);
+  }
+</script>

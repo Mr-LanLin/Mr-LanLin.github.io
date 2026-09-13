@@ -1,0 +1,458 @@
+---
+// 首页:粒子背景 + 动感渐变标题 + 打字机副标题 + 入场动画 + 毛玻璃卡片
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ParticleBackground from '../components/ParticleBackground.astro';
+import Typewriter from '../components/Typewriter.astro';
+
+// 读取所有博客文章,过滤掉草稿,按日期倒序
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// 收集分类及计数
+const FIXED_CAT_ORDER = ['AI应用', '架构', '后端', '数据库与中间件', '工程实践', '随笔'];
+const catCount = new Map();
+for (const post of posts) {
+  const cats = Array.isArray(post.data.category)
+    ? (post.data.category.length ? post.data.category : ['未分类'])
+    : [post.data.category || '未分类'];
+  for (const c of cats) {
+    catCount.set(c, (catCount.get(c) || 0) + 1);
+  }
+}
+// 按固定顺序排列，未命中固定顺序的追加到末尾
+const categories = [
+  ...FIXED_CAT_ORDER.filter(c => catCount.has(c)),
+  ...catCount.keys().filter(c => !FIXED_CAT_ORDER.includes(c)),
+];
+---
+
+<BaseLayout title="Mr-LanLin">
+  <!-- 全屏粒子背景(置于内容下方) -->
+  <ParticleBackground />
+
+  <!-- Hero 区:光晕 + 动感渐变标题 + 打字机副标题 -->
+  <section class="hero container">
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <h1 class="fade-up" style="--delay: 0ms">
+      你好,我是 <span class="gradient gradient-animated">Mr-LanLin</span>
+    </h1>
+
+    <p class="subtitle fade-up" style="--delay: 160ms">
+      <Typewriter />
+    </p>
+
+    <p class="desc fade-up" style="--delay: 320ms">
+      架构 · 记录技术 · 思考与生活
+    </p>
+  </section>
+
+  <!-- 文章列表 -->
+  <section class="container posts" id="posts">
+    <h2 class="fade-up">最新文章</h2>
+    {
+      posts.length === 0 ? (
+        <p class="empty">还没有文章,在 src/content/blog 下新增一个 .md 文件即可。</p>
+      ) : (
+        <>
+          <div class="cat-filter" id="cat-filter">
+            <button class="cat-chip active" data-cat="all">全部 <span class="count">{posts.length}</span></button>
+            {categories.map((cat) => (
+              <button class="cat-chip" data-cat={cat}>{cat} <span class="count">{catCount.get(cat)}</span></button>
+            ))}
+          </div>
+          <ul class="post-list" id="post-list">
+            {
+              posts.map((post) => (
+                <li data-categories={
+                  (Array.isArray(post.data.category)
+                    ? (post.data.category.length ? post.data.category : ['未分类'])
+                    : [post.data.category || '未分类']
+                  ).join(' ')
+                }>
+                  <a class="glass-card" href={`/blog/${post.slug}/`}>
+                    <div class="post-title">{post.data.title}</div>
+                    <div class="post-meta">
+                      <time datetime={post.data.pubDate.toISOString()}>
+                        {post.data.pubDate.toLocaleDateString('zh-CN')}
+                      </time>
+                      {post.data.tags.length > 0 && (
+                        <span class="tags">
+                          {post.data.tags.map((tag) => (
+                            <span class="tag">{tag}</span>
+                          ))}
+                        </span>
+                      )}
+                    </div>
+                    <div class="post-desc">{post.data.description}</div>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <nav class="pagination" id="pagination" aria-label="分页"></nav>
+        </>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<script>
+  // 首页滚动位置记忆:点文章离开时记录,返回首页时恢复(恢复后立即清除,不影响全新进入)
+  const SCROLL_KEY = 'home-scroll-y';
+
+  document.querySelectorAll('.glass-card').forEach((a) => {
+    a.addEventListener('click', () => {
+      sessionStorage.setItem(SCROLL_KEY, String(window.scrollY));
+    });
+  });
+
+  const saved = sessionStorage.getItem(SCROLL_KEY);
+  if (saved) {
+    const y = parseInt(saved, 10);
+    requestAnimationFrame(() => window.scrollTo(0, y));
+    sessionStorage.removeItem(SCROLL_KEY);
+  }
+</script>
+
+<script>
+  // 分类筛选 + 分页(纯前端零依赖)
+  (function () {
+    const list = document.getElementById('post-list');
+    const chips = document.querySelectorAll('#cat-filter .cat-chip');
+    const pagination = document.getElementById('pagination');
+    if (!list || !chips.length || !pagination) return;
+
+    const items = Array.from(list.querySelectorAll('li'));
+    const PER_PAGE = 8;
+    let currentCat = 'all';
+    let currentPage = 1;
+
+    const getVisible = () =>
+      currentCat === 'all' ? items : items.filter((li) =>
+        li.dataset.categories?.split(' ').includes(currentCat)
+      );
+
+    function renderPagination(totalPages) {
+      if (totalPages <= 1) { pagination.innerHTML = ''; return; }
+      let html = `<button class="page-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>‹ 上一页</button>`;
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="page-btn${i === currentPage ? ' active' : ''}" data-page="${i}">${i}</button>`;
+      }
+      html += `<button class="page-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>下一页 ›</button>`;
+      pagination.innerHTML = html;
+    }
+
+    function render() {
+      const visible = getVisible();
+      const totalPages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      items.forEach((li) => (li.style.display = 'none'));
+      const start = (currentPage - 1) * PER_PAGE;
+      visible.slice(start, start + PER_PAGE).forEach((li) => (li.style.display = ''));
+
+      renderPagination(totalPages);
+    }
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        chips.forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentCat = chip.dataset.cat;
+        currentPage = 1;
+        render();
+      });
+    });
+
+    pagination.addEventListener('click', (e) => {
+      const btn = e.target.closest('.page-btn');
+      if (!btn || btn.disabled) return;
+      const p = parseInt(btn.dataset.page, 10);
+      const total = Math.ceil(getVisible().length / PER_PAGE);
+      if (p >= 1 && p <= total) {
+        currentPage = p;
+        render();
+        document.getElementById('posts').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    render();
+  })();
+</script>
+
+<style>
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    padding: 5rem 1.5rem 3rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  /* 渐变光晕:标题背后的氛围光 */
+  .hero-glow {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    width: 42rem;
+    height: 24rem;
+    transform: translate(-50%, -50%);
+    background:
+      radial-gradient(closest-side, rgba(34, 211, 238, 0.22), transparent 70%),
+      radial-gradient(closest-side, rgba(167, 139, 250, 0.18), transparent 70%);
+    filter: blur(28px);
+    pointer-events: none;
+    animation: glow-drift 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-drift {
+    from { transform: translate(-50%, -50%) scale(1); }
+    to   { transform: translate(-50%, -50%) scale(1.12); }
+  }
+
+  h1 {
+    position: relative;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .gradient {
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* 动感渐变:放大背景并循环平移,让颜色在文字上流动 */
+  .gradient-animated {
+    background-size: 200% auto;
+    animation: gradient-flow 5s linear infinite;
+  }
+
+  @keyframes gradient-flow {
+    to { background-position: 200% center; }
+  }
+
+  .subtitle {
+    position: relative;
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0.25rem 0;
+    min-height: 1.5em;
+  }
+
+  .desc {
+    position: relative;
+    color: var(--color-text-muted);
+  }
+
+  /* ===== 入场动画(淡入上移,延迟用内联变量) ===== */
+  .fade-up {
+    opacity: 0;
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: var(--delay, 0ms);
+  }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== 文章列表 ===== */
+  .posts {
+    padding-top: 1rem;
+  }
+
+  .empty {
+    color: var(--color-text-muted);
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* 毛玻璃卡片 + hover 光效 */
+  .glass-card {
+    position: relative;
+    display: block;
+    padding: 1.35rem 1.5rem;
+    background: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    overflow: hidden;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(34, 211, 238, 0.08), transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.7s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(34, 211, 238, 0.5);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(34, 211, 238, 0.12);
+  }
+
+  .glass-card:hover::before {
+    transform: translateX(100%);
+  }
+
+  .post-title {
+    position: relative;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .post-meta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+  }
+
+  .tags {
+    display: inline-flex;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    background: rgba(34, 211, 238, 0.12);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    color: var(--color-accent);
+  }
+
+  .post-desc {
+    position: relative;
+    margin-top: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  /* ===== 分类筛选 ===== */
+  .cat-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cat-chip {
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-bg-soft);
+    background: rgba(30, 41, 59, 0.4);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .cat-chip:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .cat-chip.active {
+    color: #0b1020;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2));
+    border-color: transparent;
+    font-weight: 600;
+  }
+
+  .cat-chip .count {
+    opacity: 0.7;
+    font-size: 0.8em;
+    margin-left: 0.25rem;
+  }
+
+  /* 减少动效偏好:禁用动画 */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity: 1; animation: none; }
+    .hero-glow, .gradient-animated { animation: none; }
+  }
+
+  /* ===== 响应式:移动端(< 640px) ===== */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 3rem 1rem 2rem;
+    }
+
+    .hero-glow {
+      width: 24rem;
+      height: 16rem;
+    }
+
+    .glass-card {
+      padding: 1rem 1.1rem;
+    }
+
+    .post-title {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<style is:global>
+  /* 分页控件(按钮由 JS 动态生成,必须全局样式才能命中) */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .page-btn {
+    min-width: 2.3rem;
+    height: 2.3rem;
+    padding: 0 0.7rem;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    background: rgba(30, 41, 59, 0.4);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .page-btn:hover:not(:disabled):not(.active) {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .page-btn.active {
+    color: #0b1020;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2));
+    border-color: transparent;
+    font-weight: 700;
+    box-shadow: 0 0 14px rgba(34, 211, 238, 0.55), 0 4px 14px rgba(167, 139, 250, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+</style>

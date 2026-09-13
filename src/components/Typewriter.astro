@@ -1,0 +1,176 @@
+---
+// 打字机效果:副标题多短语循环(输入 + 停顿 + 删除)
+// 附带名人虚影:每句名言对应一位名人,打字时虚影淡入,切换时淡出
+interface Props {
+  items?: { phrase: string; person: string }[];
+}
+
+const defaultItems = [
+  { phrase: '博观而约取，厚积而薄发。', person: '苏轼' },
+  { phrase: '流水不争先，争的是滔滔不绝。', person: '老子' },
+  { phrase: '学而不思则罔，思而不学则殆。', person: '孔子' },
+  { phrase: '路漫漫其修远兮，吾将上下而求索。', person: '屈原' },
+  { phrase: '纸上得来终觉浅，绝知此事要躬行。', person: '陆游' },
+  { phrase: '不积跬步，无以至千里。', person: '荀子' },
+  { phrase: '工欲善其事，必先利其器。', person: '孔子' },
+  { phrase: '苟日新，日日新，又日新。', person: '商汤' },
+  { phrase: '千里之行，始于足下。', person: '老子' },
+  { phrase: '种一棵树最好的时间是十年前，其次是现在。', person: '谚语' },
+  { phrase: '求知若饥，虚心若愚。', person: 'Jobs' },
+  { phrase: '热爱可抵岁月漫长。', person: '佚名' },
+  { phrase: '书山有路勤为径，学海无涯苦作舟。', person: '韩愈' },
+  { phrase: '少壮不努力，老大徒伤悲。', person: '汉乐府' },
+];
+
+const { items = defaultItems } = Astro.props;
+---
+
+<span class="typewriter-group">
+  <span class="typewriter">
+    <span id="typewriter-text" aria-live="polite">{items[0].phrase}</span>
+    <span class="cursor" aria-hidden="true"></span>
+  </span>
+  <span class="person-ghost" id="person-ghost" aria-hidden="true">
+    <span class="person-name" id="person-name">{items[0].person}</span>
+  </span>
+</span>
+
+<style>
+  .typewriter-group {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .typewriter {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    margin-left: 2px;
+    background: var(--color-accent);
+    vertical-align: text-bottom;
+    animation: blink 0.85s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* 名人虚影 */
+  .person-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(167, 139, 250, 0.3);
+    background: rgba(167, 139, 250, 0.06);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(167, 139, 250, 0.7);
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transform: scale(0.7) translateY(4px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    flex-shrink: 0;
+    /* 虚影发光效果 */
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.15), 0 0 24px rgba(167, 139, 250, 0.05);
+  }
+
+  .person-ghost.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    box-shadow: 0 0 16px rgba(167, 139, 250, 0.25), 0 0 32px rgba(167, 139, 250, 0.1);
+  }
+
+  .person-name {
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  /* 减少动效 */
+  @media (prefers-reduced-motion: reduce) {
+    .person-ghost {
+      transition: none;
+    }
+  }
+</style>
+
+<script define:vars={{ items }}>
+  const el = document.getElementById('typewriter-text');
+  const ghost = document.getElementById('person-ghost');
+  const nameEl = document.getElementById('person-name');
+
+  const TYPE_SPEED = 90;
+  const DELETE_SPEED = 40;
+  const HOLD_TIME = 1600;
+  const GHOST_FADE_IN_DELAY = 300;  // 打字开始后多少 ms 虚影淡入
+
+  let itemIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+  let ghostTimer = 0;
+  let timer = 0;
+
+  function showGhost() {
+    nameEl.textContent = items[itemIndex].person;
+    ghost.classList.add('visible');
+  }
+
+  function hideGhost() {
+    ghost.classList.remove('visible');
+  }
+
+  function tick() {
+    const item = items[itemIndex];
+    const phrase = item.phrase;
+    const full = phrase.length;
+
+    if (!deleting) {
+      charIndex++;
+      el.textContent = phrase.slice(0, charIndex);
+
+      // 打字开始后延迟淡入虚影
+      if (charIndex === 1) {
+        ghostTimer = window.setTimeout(showGhost, GHOST_FADE_IN_DELAY);
+      }
+
+      if (charIndex === full) {
+        deleting = true;
+        timer = window.setTimeout(tick, HOLD_TIME);
+        return;
+      }
+      timer = window.setTimeout(tick, TYPE_SPEED);
+    } else {
+      charIndex--;
+      el.textContent = phrase.slice(0, charIndex);
+
+      if (charIndex === 0) {
+        deleting = false;
+        hideGhost();
+        clearTimeout(ghostTimer);
+        itemIndex = (itemIndex + 1) % items.length;
+        // 等虚影淡出后再开始下一个
+        timer = window.setTimeout(tick, 400);
+        return;
+      }
+      timer = window.setTimeout(tick, DELETE_SPEED);
+    }
+  }
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    el.textContent = items[0].phrase;
+    nameEl.textContent = items[0].person;
+    ghost.classList.add('visible');
+  } else {
+    tick();
+  }
+</script>

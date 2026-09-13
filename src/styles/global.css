@@ -1,0 +1,117 @@
+/* 全局样式:整个站点的设计变量 + 基础样式 */
+
+:root {
+  /* 主题色变量,方便统一改配色 */
+  --color-bg: #0f172a;           /* 深色背景 */
+  --color-bg-soft: #1e293b;      /* 次级背景 */
+  --color-text: #e2e8f0;         /* 正文文字 */
+  --color-text-muted: #94a3b8;   /* 弱化文字 */
+  --color-accent: #22d3ee;       /* 强调色(青色) */
+  --color-accent-2: #a78bfa;     /* 强调色 2(紫色,用于渐变) */
+
+  --max-width: 1080px;          /* 页面整体宽度 */
+  --max-width-prose: var(--max-width);  /* 文章正文宽度(与整体一致,和列表页同宽) */
+  --font-sans: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* 让页头/正文/页脚位于全屏粒子背景(fixed, z-index:0)之上 */
+header,
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* 通用容器 */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* 窄容器:用于文章正文等长文阅读场景 */
+.container-narrow {
+  max-width: var(--max-width-prose);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* 文章正文排版 */
+article {
+  font-size: 1.05rem;
+}
+
+article h2 {
+  margin-top: 2.5rem;
+  border-bottom: 1px solid var(--color-bg-soft);
+  padding-bottom: 0.5rem;
+}
+
+article code {
+  background: var(--color-bg-soft);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+article pre {
+  background: var(--color-bg-soft);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+article img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+article blockquote {
+  border-left: 3px solid var(--color-accent);
+  margin-left: 0;
+  padding-left: 1rem;
+  color: var(--color-text-muted);
+}
+
+/* ===== 响应式:移动端(< 640px) ===== */
+@media (max-width: 640px) {
+  .container,
+  .container-narrow {
+    padding: 0 1rem;
+  }
+
+  body {
+    font-size: 15px;
+  }
+
+  article {
+    font-size: 1rem;
+  }
+}

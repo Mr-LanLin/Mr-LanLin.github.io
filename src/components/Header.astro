@@ -1,0 +1,63 @@
+---
+// 页头:站点名 + 导航
+---
+
+<header>
+  <nav class="container nav">
+    <a href="/" class="brand">Mr-LanLin</a>
+    <div class="links">
+      <a href="/">首页</a>
+      <a href="/about">关于</a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-text);
+  }
+
+  .brand:hover {
+    opacity: 1;
+  }
+
+  .links {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .links a {
+    color: var(--color-text-muted);
+  }
+
+  .links a:hover {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  /* 移动端:更紧凑的导航 */
+  @media (max-width: 640px) {
+    .nav {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+    }
+
+    .links {
+      gap: 0.9rem;
+    }
+  }
+</style>

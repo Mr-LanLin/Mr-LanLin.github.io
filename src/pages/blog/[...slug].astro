@@ -1,0 +1,182 @@
+---
+// 文章详情页:根据 URL 中的 slug 渲染对应的 Markdown 内容
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  // 为每篇文章生成一个路径 /blog/<slug>/
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <!-- 返回上一步 -->
+  <div class="container-narrow back-nav">
+    <a href="/" class="back-btn" data-back>
+      <span aria-hidden="true">←</span> 返回
+    </a>
+  </div>
+
+  <article class="container-narrow post">
+    <header class="post-header">
+      <h1>{post.data.title}</h1>
+      <p class="meta">
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('zh-CN')}
+        </time>
+        {post.data.updatedDate && (
+          <span class="updated">
+            · 更新于 {post.data.updatedDate.toLocaleDateString('zh-CN')}
+          </span>
+        )}
+      </p>
+      {post.data.tags.length > 0 && (
+        <div class="tags">
+          {post.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <Content />
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    padding-top: 1rem;
+  }
+
+  .back-nav {
+    padding-top: 1.5rem;
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--color-bg-soft);
+    border-radius: 999px;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .back-btn:hover {
+    opacity: 1;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    transform: translateX(-3px);
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
+  }
+
+  .post-header h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .meta {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  .updated {
+    margin-left: 0.5rem;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .tag {
+    background: var(--color-bg-soft);
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    color: var(--color-accent);
+    font-size: 0.85rem;
+  }
+
+  /* mermaid 流程图容器 */
+  .mermaid-graph {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  .mermaid-graph svg {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<script>
+  // 返回按钮:优先回退到上一页;若直接打开文章(无历史)则回到首页
+  const back = document.querySelector('[data-back]');
+  back?.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      window.location.href = '/';
+    }
+  });
+</script>
+
+<script>
+  // mermaid 流程图渲染:仅当页面存在 mermaid 代码块时,才按需加载 CDN
+  (function () {
+    const blocks = document.querySelectorAll('pre[data-language="mermaid"] code');
+    if (!blocks.length) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';
+    script.onload = () => {
+      window.mermaid.initialize({
+        startOnLoad: false,
+        theme: 'dark',
+        themeVariables: {
+          background: '#0f172a',
+          primaryColor: '#1e293b',
+          primaryTextColor: '#e2e8f0',
+          primaryBorderColor: '#22d3ee',
+          secondaryColor: '#1e293b',
+          lineColor: '#94a3b8',
+          fontSize: '14px',
+        },
+      });
+
+      blocks.forEach(async (code, i) => {
+        try {
+          const graph = code.textContent.trim();
+          const id = 'mermaid-' + i + '-' + Math.random().toString(36).slice(2, 7);
+          const { svg } = await window.mermaid.render(id, graph);
+          const wrap = document.createElement('div');
+          wrap.className = 'mermaid-graph';
+          wrap.innerHTML = svg;
+          code.closest('pre').replaceWith(wrap);
+        } catch (e) {
+          // 渲染失败时保留原始代码块,避免内容丢失
+          console.warn('mermaid 渲染失败:', e);
+        }
+      });
+    };
+    script.onerror = () => {
+      console.warn('mermaid CDN 加载失败,流程图以代码块展示');
+    };
+    document.head.appendChild(script);
+  })();
+</script>
