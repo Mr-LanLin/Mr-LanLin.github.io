@@ -1,24 +1,15 @@
-# 自动部署到 GitHub Pages 的工作流
-# 用法:把这个文件推到 GitHub 仓库后,
-# 在仓库 Settings → Pages → Build and deployment 里
-# 把 Source 从 "Deploy from a branch" 改成 "GitHub Actions"。
-
 name: Deploy to GitHub Pages
 
 on:
-  # 推送到 main 分支时自动触发
   push:
     branches: [master]
-  # 允许手动触发
   workflow_dispatch:
 
-# 设置 GITHUB_TOKEN 的权限,允许它部署到 Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 只允许一次并发部署,避免旧部署覆盖新部署
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -28,12 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
+          registry-url: https://registry.npmjs.org/
           cache: npm
 
       - name: Install dependencies
@@ -43,7 +35,7 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -56,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
