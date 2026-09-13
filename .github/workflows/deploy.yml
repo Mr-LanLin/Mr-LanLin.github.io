@@ -8,7 +8,7 @@ name: Deploy to GitHub Pages
 on:
   # 推送到 main 分支时自动触发
   push:
-    branches: [main]
+    branches: [master]
   # 允许手动触发
   workflow_dispatch:
 
