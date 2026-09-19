@@ -2,7 +2,7 @@
 title: 'Java8新特性'
 description: 'Java8是Java发布以来改动最大的一个版本，其中主要添加了函数式编程、Stream、一些日期处理类。函数式编程中中新加了一些概念：Lambda表达式、函数式接口、函数引用等...'
 pubDate: 2020-03-01
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

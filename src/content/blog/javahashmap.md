@@ -2,7 +2,7 @@
 title: 'HashMap实现剖析'
 description: 'HashMap可以说是Java中最常用的集合类框架之一，是Java语言中非常典型的数据结构，我们总会在不经意间用到它，很大程度上方便了我们日常开发。但是，你真的了解它吗...'
 pubDate: 2017-09-10
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

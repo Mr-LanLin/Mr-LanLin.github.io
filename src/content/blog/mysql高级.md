@@ -2,7 +2,7 @@
 title: 'MySQL高级知识'
 description: 'MySQL知识进阶。...'
 pubDate: 2020-11-20
-category: 'DataBase'
+category: '数据库与中间件'
 tags: []
 ---
 

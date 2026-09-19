@@ -2,7 +2,7 @@
 title: 'CopyOnWriteArrayList源码分析'
 description: 'CopyOnWriteArrayList是ArrayList 的一个线程安全的变体，其中所有可变操作（add、set等等）都是通过对底层数组进行一次新的复制来实现的。...'
 pubDate: 2020-10-09
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

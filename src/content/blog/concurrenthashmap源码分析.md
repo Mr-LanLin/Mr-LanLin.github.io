@@ -2,7 +2,7 @@
 title: 'ConcurrentHashMap源码分析'
 description: 'ConcurrentHashMap是HashMap的线程安全版本，底层数据结构为数组+链表/红黑树，默认容量16，线程同步，不允许[key,value]为null。...'
 pubDate: 2020-10-01
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

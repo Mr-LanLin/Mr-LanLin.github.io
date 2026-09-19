@@ -2,7 +2,7 @@
 title: 'Java IO知识整理'
 description: 'Java的核心库java.io提供了全面的IO接口。包括：文件读写、标准设备输出等。Java中IO是以流为基础进行输入输出的，所有数据被串行化写入输出流，或者从输入流读入...'
 pubDate: 2017-10-25
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

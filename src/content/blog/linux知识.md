@@ -2,7 +2,7 @@
 title: 'linux知识'
 description: 'linux 是一个开源、免费的操作系统，其稳定性、安全性、处理多并发已经得到业界的认可，目前很多中型，大型甚至是集群项目都在使用 linux。...'
 pubDate: 2020-11-04
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

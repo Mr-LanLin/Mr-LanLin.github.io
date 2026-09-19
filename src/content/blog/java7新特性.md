@@ -2,7 +2,7 @@
 title: 'Java7新特性'
 description: '在经历了推迟发布，Sun 被收购，新特性删减，再推迟发布等一系列事件之后，JDK7 终于还是来到了大家的面前，那么 JDK7 到底有哪些重要的新特性呢？...'
 pubDate: 2020-02-01
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

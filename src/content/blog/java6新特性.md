@@ -2,7 +2,7 @@
 title: 'Java6新特性'
 description: 'Java 6 在性能方面有了不错的提升。与 Java 5 在 API 库方面的大幅度加强相比，虽然在 API 库方面的新特性显得不太多，但是也提供了许多实用和方便的功能...'
 pubDate: 2020-01-01
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

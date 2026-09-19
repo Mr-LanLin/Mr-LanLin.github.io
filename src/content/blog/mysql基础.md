@@ -2,7 +2,7 @@
 title: 'MySQL基础知识'
 description: 'MySQL是一种开放源代码的关系型数据库管理系统（RDBMS），使用最常用的数据库管理语言--结构化查询语言（SQL）进行数据库管理。...'
 pubDate: 2020-10-15
-category: 'DataBase'
+category: '数据库与中间件'
 tags: []
 ---
 

@@ -2,7 +2,7 @@
 title: 'Java 5 新特性整理'
 description: 'Java编程语言发展到5.0版本，出现了很多和之前Java版本相比比较新颖的特性，这可以说是Java史上最重大的更新之一...'
 pubDate: 2017-12-21
-category: 'Java'
+category: '后端'
 tags: []
 ---
 

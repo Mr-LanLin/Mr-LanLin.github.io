@@ -2,7 +2,7 @@
 title: 'Redis知识'
 description: 'Redis是一种开放源代码（BSD许可）的内存中数据结构存储，用作数据库，缓存和消息代理。...'
 pubDate: 2020-11-20
-category: 'DataBase'
+category: '数据库与中间件'
 tags: []
 ---
 
